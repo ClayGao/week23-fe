@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
 import './scss/App.scss';
-import Nav from './nav'
-import PostList from './post_list'
-import Post from './post'
-import About from './about'
-import Write from './write'
-import Home from './home'
+import Nav from './components/nav'
+import PostList from './containers/PostListContainer'
+import Post from './components/post'
+import About from './components/about'
+import Write from './components/write'
+import Home from './components/home'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 
@@ -35,7 +35,7 @@ class App extends Component {
   render() {
       const {scrollY} = this.state
       return (
-        <Router basename="/week22/my-app/build">
+        <Router basename="/week23/my-app/build">
           <div className="App">
               <Nav isMove={scrollY}/>
               <div className="wrapper"> 

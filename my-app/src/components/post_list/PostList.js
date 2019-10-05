@@ -1,23 +1,27 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-dom";
-import axios from 'axios';
+import { getPosts } from '../../WebAPI'
 
 class PostList extends Component {
     constructor(props) {
         super(props)
+        /*
         this.state = {
             postListData: [], 
         }
+        */
     }
  
     handlePostListData = () => {
-        const url = 'https://qootest.com/posts'
-        axios.get(url)
+        this.props.getPostList()
+        /*
+        getPosts()
             .then(resp => {
                 this.setState({
                     postListData: resp.data.reverse(),
                 })
             })
+            */
     }
  
     componentDidMount() {
@@ -25,18 +29,15 @@ class PostList extends Component {
     }
     
     render(){
-        const {postListData} = this.state
-        const {history} = this.props
+        //const {postListData} = this.state
+        const {history, postListData} = this.props
+        console.log(this.props)
         return (
-            <div  className="board">
+            <div className="board">
             <div className="page-title">
                 Articles
             </div>
-            {!postListData[0] ? 
-            <div className="loading">
-                Loading... 
-            </div> : 
-            postListData.map(card => (
+            {postListData.map(card => (
                 <div key={card.id} 
                     className="post" 
                     onClick={() => { 
@@ -59,4 +60,4 @@ class PostList extends Component {
  }
 
 
-export default withRouter(PostList) 
+export default PostList

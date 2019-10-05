@@ -9,9 +9,11 @@
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
     "react-markdown": "^4.2.2",
+    "react-redux": "^7.1.1",
     "react-remarkable": "^1.1.3",
     "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.2",
+    "redux": "^4.0.4",
     "remarkable": "^2.0.0",
     "remarkable-react": "^1.4.1"
   },
@@ -35,5 +37,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "redux-devtools": "^3.5.0"
   }
 }

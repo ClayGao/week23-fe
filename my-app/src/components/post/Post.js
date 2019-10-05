@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import ReactMarkdown from 'react-markdown';
-import axios from 'axios';
+import { getSinglePost } from '../../WebAPI'
 
 class Post extends Component {
     constructor(props) {
@@ -12,8 +12,7 @@ class Post extends Component {
  
     handlePostData = () => {
         const listId = this.props.match.params.listId
-        const url = 'https://qootest.com/posts/' + listId
-        axios.get(url)
+        getSinglePost(listId)
             .then(resp => {
                 this.setState({
                     postData: resp.data
