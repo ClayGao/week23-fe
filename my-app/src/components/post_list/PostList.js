@@ -1,43 +1,26 @@
 import React, {Component} from 'react';
-import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-dom";
-import { getPosts } from '../../WebAPI'
 
 class PostList extends Component {
     constructor(props) {
         super(props)
-        /*
-        this.state = {
-            postListData: [], 
-        }
-        */
-    }
- 
-    handlePostListData = () => {
-        this.props.getPostList()
-        /*
-        getPosts()
-            .then(resp => {
-                this.setState({
-                    postListData: resp.data.reverse(),
-                })
-            })
-            */
     }
  
     componentDidMount() {
-        this.handlePostListData()
+        this.props.getPostList()
     }
     
     render(){
-        //const {postListData} = this.state
-        const {history, postListData} = this.props
-        console.log(this.props)
+        const {history, isLoadingGetPosts, postListData} = this.props
         return (
             <div className="board">
             <div className="page-title">
                 Articles
             </div>
-            {postListData.map(card => (
+            {isLoadingGetPosts ? 
+            <div className="loading">
+                Loading... 
+            </div>:
+            postListData.map(card => (
                 <div key={card.id} 
                     className="post" 
                     onClick={() => { 

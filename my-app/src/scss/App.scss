@@ -209,6 +209,14 @@ ul {
         padding: 5px 8px;
         word-break: break-word;
     }
+    &-editblock {  
+        @include font(20px, $font-color, bold, monospace);
+        position: absolute;
+        bottom: 45px;
+        left: 60px;
+        padding: 5px 8px;
+        word-break: break-word;
+    }
 }
 
 /* ----- Write.js  ----- */

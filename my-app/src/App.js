@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import './scss/App.scss';
 import Nav from './components/nav'
 import PostList from './containers/PostListContainer'
-import Post from './components/post'
+import Post from './containers/PostContainer'
 import About from './components/about'
 import Write from './components/write'
 import Home from './components/home'

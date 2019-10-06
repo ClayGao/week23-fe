@@ -1,8 +1,12 @@
 import { combineReducers } from 'redux';
 import getPostsReducer from './getPostsReducer'
+import { getSinglePostReducer,  deleteSinglePostReducer, editSinglePostReducer} from './getSinglePostReducer'
 
 const blogApp = combineReducers({
-    getPostsReducer
+    getPostsReducer,
+    getSinglePostReducer,
+    editSinglePostReducer,
+    deleteSinglePostReducer
 });
 
 export default blogApp;

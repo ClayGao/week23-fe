@@ -5,41 +5,53 @@ import { getSinglePost } from '../../WebAPI'
 class Post extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            postData: [], 
-        }
-    }
- 
-    handlePostData = () => {
-        const listId = this.props.match.params.listId
-        getSinglePost(listId)
-            .then(resp => {
-                this.setState({
-                    postData: resp.data
-                })
-            })
     }
 
     componentDidMount() {
-        this.handlePostData()
+        const postId = this.props.match.params.listId
+        this.props.getActiveSinglePost(postId)
     }
     
     render(){
-        const { postData } = this.state
+        console.log(this.props)
+        const postId = this.props.match.params.listId
+        const { singlePostData, isLoadingSinglePost, deleteActiveSinglePost,
+             editActiveSinglePost, editingActiveSinglePost, completeEditActiveSinglePost, isEditing } = this.props
         return (
             <div  className="board">
-                <div key={postData.id} 
-                    className="single-post" >        
+                <div key={singlePostData.id} 
+                    className="single-post" > 
+                    {!isEditing ? 
+                    <>
                     <div className="single-post-title">
-                        {postData.title}
+                        {singlePostData.title}
                     </div>
                     <ReactMarkdown 
                         className="single-post-text" 
-                        source={postData.body ? postData.body : "Loading..."} 
+                        source={!isLoadingSinglePost ? singlePostData.body : "Loading..."} 
                     />
                     <div className="single-post-editor">
-                        {"Author: " + (postData.author ? postData.author : "Noname")}
+                        {"Author: " + (singlePostData.author ? singlePostData.author : "Noname")}
                     </div>
+                    <div className="single-post-editblock">
+                        <p onClick={() => { deleteActiveSinglePost(postId) }}>Delete</p>
+                        <p onClick={() => { editActiveSinglePost() }}>Edit</p>
+                    </div>
+                    </>
+                    :
+                    <>
+                    <form onChange={(e) => {editingActiveSinglePost(e.target.value, e.target.value)}}>
+                        <input className="write-article-title" type="text"  defaultValue={singlePostData.title} />
+                        <textarea className="write-article-text" defaultValue={singlePostData.body} />
+                    </form>
+                    <div className="single-post-editor">
+                        {"Author: " + (singlePostData.author ? singlePostData.author : "Noname")}
+                    </div>
+                    <div className="single-post-editblock">
+                        
+                    </div>
+                    </>
+                    }       
                 </div>
             </div>
         )

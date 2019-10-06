@@ -5,31 +5,30 @@ import { getPosts } from '../WebAPI'
 import PostList from '../components/post_list'
 import * as actions from '../actions'
 
-const PostListContainer = (props) => (
-    <PostList {...props} />
-)
+const PostListContainer = props => {
+    return <PostList {...props} />
+}
 
 const mapStateToProps = state => {
     return {
-        isLoadingGetPosts: state.isLoadingGetPosts,
-        postListData: state.postListData.data
+        isLoadingGetPosts: state.getPostsReducer.isLoadingGetPosts,
+        postListData: state.getPostsReducer.postListData
     }
 }
 
 const mapDispatchToProps = dispatch => {
-    return {
+    return {             
         getPostList: () => {
-            getPosts()
-            .then(resp => {
+            dispatch(actions.getPosts())
+            getPosts().then(resp => {
                 dispatch(actions.getPostsSuccess(resp.data))
             })
         }
     }
-    
 }
 
 
 
 
 
-export default withRouter(connect( mapStateToProps, mapDispatchToProps )(PostListContainer)) 
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(PostListContainer)) 

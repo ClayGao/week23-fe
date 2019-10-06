@@ -1,7 +1,7 @@
 import * as actionTypes from '../actionsTypes';
 
 const initState = {
-    postListData:[],
+    postListData: [],
     isLoadingGetPosts: false
 }
 
@@ -15,8 +15,8 @@ export default function getPostsReducer(state = initState, action) {
         case actionTypes.GET_POSTS_SUCCESS:
             return {
                 ...state,
-                isLoadingGetPosts: false,
-                postListData: action.data
+                postListData: action.data,
+                isLoadingGetPosts: false  
             }
         default:
             return state
