@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import ReactMarkdown from 'react-markdown';
-import { getSinglePost } from '../../WebAPI'
 
 class Post extends Component {
     constructor(props) {
@@ -13,15 +12,19 @@ class Post extends Component {
     }
     
     render(){
-        console.log(this.props)
         const postId = this.props.match.params.listId
-        const { singlePostData, isLoadingSinglePost, deleteActiveSinglePost,
-             editActiveSinglePost, editingActiveSinglePost, completeEditActiveSinglePost, isEditing } = this.props
+        const { singlePostData, isLoadingSinglePost, deleteActiveSinglePost, editActiveSinglePost, completeEditActiveSinglePost, isEditing,title,body,isDeleted } = this.props
+        console.log(isDeleted)
         return (
             <div  className="board">
                 <div key={singlePostData.id} 
                     className="single-post" > 
                     {!isEditing ? 
+                    isLoadingSinglePost ? 
+                    <div className="loading">
+                        Loading... 
+                    </div>
+                    :
                     <>
                     <div className="single-post-title">
                         {singlePostData.title}
@@ -34,21 +37,26 @@ class Post extends Component {
                         {"Author: " + (singlePostData.author ? singlePostData.author : "Noname")}
                     </div>
                     <div className="single-post-editblock">
-                        <p onClick={() => { deleteActiveSinglePost(postId) }}>Delete</p>
-                        <p onClick={() => { editActiveSinglePost() }}>Edit</p>
+                        <span className="single-post-editblock-edit" 
+                            onClick={() => { 
+                                editActiveSinglePost(singlePostData.title, singlePostData.body) 
+                                }}>Edit</span>
+                        <span className="single-post-editblock-delete" 
+                            onClick={() => { 
+                                deleteActiveSinglePost(postId)
+                                window.history.back()
+                                }}>Delete</span>
                     </div>
                     </>
                     :
                     <>
-                    <form onChange={(e) => {editingActiveSinglePost(e.target.value, e.target.value)}}>
-                        <input className="write-article-title" type="text"  defaultValue={singlePostData.title} />
-                        <textarea className="write-article-text" defaultValue={singlePostData.body} />
+                    <form className="edit-article">
+                        <input className="edit-article-title" type="text"  defaultValue={singlePostData.title} onChange={(e) => {editActiveSinglePost(e.target.value, body)}}/>
+                        <textarea className="edit-article-text" defaultValue={singlePostData.body} onChange={(e) => {editActiveSinglePost(title, e.target.value)}}/>
+                        <input className="edit-article-button" type="button" value="Send" onClick={()=>{ completeEditActiveSinglePost(postId, title, body)}} />
                     </form>
                     <div className="single-post-editor">
                         {"Author: " + (singlePostData.author ? singlePostData.author : "Noname")}
-                    </div>
-                    <div className="single-post-editblock">
-                        
                     </div>
                     </>
                     }       

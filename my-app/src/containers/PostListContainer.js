@@ -12,7 +12,7 @@ const PostListContainer = props => {
 const mapStateToProps = state => {
     return {
         isLoadingGetPosts: state.getPostsReducer.isLoadingGetPosts,
-        postListData: state.getPostsReducer.postListData
+        postListData: state.getPostsReducer.postListData,
     }
 }
 

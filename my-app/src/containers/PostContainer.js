@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux'
-import { getSinglePost, deleteSinglePost, editSinglePost } from '../WebAPI'
+import { getPosts, getSinglePost, deleteSinglePost, editSinglePost } from '../WebAPI'
 import Post from '../components/post'
 import * as actions from '../actions'
 
@@ -10,7 +10,8 @@ const PostContainer = props => {
 
 const mapStateToProps = state => {
     return {
-        isLoadingSinglePost: state.getSinglePostReducer.isLoadinSinglePost,
+        isDeleted: state.editSinglePostReducer.isDeleted,
+        isLoadingSinglePost: state.getSinglePostReducer.isLoadingSinglePost,
         singlePostData: state.getSinglePostReducer.singlePostData,
         isEditing: state.editSinglePostReducer.isEditing,
         title: state.editSinglePostReducer.title,
@@ -28,19 +29,19 @@ const mapDispatchToProps = dispatch => {
         },
         deleteActiveSinglePost: (postId) => {
             dispatch(actions.deleteSinglePost())
-            deleteSinglePost(postId).then(resp => {
-                dispatch(actions.deleteSinglePostSuccess())
-            })
+            deleteSinglePost(postId)
+            dispatch(actions.deleteSinglePostSuccess())
+            alert('Delete Success!') 
         },
-        editActiveSinglePost: () => {
-            dispatch(actions.editSinglePost())
-        },
-        editingActiveSinglePost: (title, body) => {
-            dispatch(actions.editingSinglePost(title, body))
+        editActiveSinglePost: (title, body) => {
+            dispatch(actions.editSinglePost(title, body))
         },
         completeEditActiveSinglePost: (postId, title, body) => {
+            if(!title || !body) return alert('不可空白唷!')
             editSinglePost(postId, title, body).then(resp => {
-                dispatch(actions.getSinglePostSuccess(resp.data))
+                getSinglePost(postId).then(resp => {
+                    dispatch(actions.getSinglePostSuccess(resp.data))
+                })
                 dispatch(actions.editSinglePostSuccess())
             })
         }

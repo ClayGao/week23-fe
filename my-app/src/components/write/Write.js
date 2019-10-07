@@ -53,7 +53,7 @@ class Write extends Component {
                     Title: <input type="text" className="write-article-title" value={title} />
                     Your name: <input type="text" className="write-article-editor" value={author} />
                     Content:　<textarea className="write-article-text" value={body}></textarea>
-                    <input type="button" onClick={this.handlePostArticle} className="write-article-button" value="Send" />
+                    <input className="write-article-button" type="button" onClick={this.handlePostArticle} value="Send" />
                 </form>
             </div>
         )
