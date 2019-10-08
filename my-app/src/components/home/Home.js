@@ -5,31 +5,34 @@ import axios from 'axios';
 class Home extends Component {
     constructor(props) {
         super(props)
-        this.state = {
-            postListData: [], 
-        }
-    }
- 
-    handlePostListData = () => {
-        const url = 'https://qootest.com/posts'
-        axios.get(url)
-            .then(resp => {
-                this.setState({
-                    postListData: resp.data.slice(resp.data.length - 9, resp.data.length).reverse()
-                })
-            })
     }
  
     componentDidMount() {
-        this.handlePostListData()
+        this.props.getPostList()
+        this.props.getWeatherAPI()
     }
     
     render(){
-        const {postListData} = this.state
-        const {history} = this.props
+        const {history, postListData, weatherData} = this.props
         return (
             <div>
                 <div  className="board">
+                    <div className="page-title">
+                        Weather
+                    </div>
+                    <div className="single-post" > 
+                        <div className="single-post-text">
+                            {weatherData.map(data => (
+                                <ul>
+                                    <li>{data.Wx}</li>
+                                    <li>{data.CI}</li>
+                                    <li>{data.MinT}</li>
+                                    <li>{data.MaxT}</li>
+                                    <li>{data.PoP}</li>
+                                </ul>
+                            ))}
+                        </div>
+                    </div>
                     <div className="page-title">
                         About me
                     </div>
@@ -82,4 +85,4 @@ class Home extends Component {
  }
 
 
-export default withRouter(Home) 
+export default Home 

@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
 import getPostsReducer from './getPostsReducer'
-import { getSinglePostReducer, editSinglePostReducer} from './getSinglePostReducer'
+import  getWeatherReducer from './getWeatherReducer'
+import { getSinglePostReducer, editSinglePostReducer, } from './getSinglePostReducer'
 
 const blogApp = combineReducers({
     getPostsReducer,
     getSinglePostReducer,
     editSinglePostReducer,
+    getWeatherReducer
 });
 
 export default blogApp;

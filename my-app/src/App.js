@@ -5,7 +5,7 @@ import PostList from './containers/PostListContainer'
 import Post from './containers/PostContainer'
 import About from './components/about'
 import Write from './components/write'
-import Home from './components/home'
+import Home from './containers/HomeContainer'
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
 

@@ -35,3 +35,13 @@ export const editSinglePost = (title, body) => ({
 export const editSinglePostSuccess = () => ({
     type: actionTypes.EDIT_SINGLE_POST_SUCCESS
 })
+
+export const getWeatherData = () => ({
+    type: actionTypes.GET_WEATHER_DATA,
+})
+
+export const getWeatherDataSuccess = (data) => ({
+    type: actionTypes.GET_WEATHER_DATA_SUCCESS,
+    data
+})
+

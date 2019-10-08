@@ -30,8 +30,10 @@ const mapDispatchToProps = dispatch => {
         deleteActiveSinglePost: (postId) => {
             dispatch(actions.deleteSinglePost())
             deleteSinglePost(postId)
-            dispatch(actions.deleteSinglePostSuccess())
-            alert('Delete Success!') 
+            getPosts().then(resp => {
+                dispatch(actions.deleteSinglePostSuccess())
+                alert('Delete Success!') 
+            })     
         },
         editActiveSinglePost: (title, body) => {
             dispatch(actions.editSinglePost(title, body))
@@ -40,7 +42,7 @@ const mapDispatchToProps = dispatch => {
             if(!title || !body) return alert('不可空白唷!')
             editSinglePost(postId, title, body).then(resp => {
                 getSinglePost(postId).then(resp => {
-                    dispatch(actions.getSinglePostSuccess(resp.data))
+                    dispatch(actions.getSinglePostSuccess(resp.data)) // 刷新頁面
                 })
                 dispatch(actions.editSinglePostSuccess())
             })
