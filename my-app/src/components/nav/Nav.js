@@ -15,6 +15,7 @@ function Tab({ label, to, exact }) {
       />
     );
   }
+
 class Nav extends Component {
     constructor(props) {
         super(props)
@@ -41,6 +42,16 @@ class Nav extends Component {
                 <li className="date">{currentTime.toDateString()}</li>
                 <li className="date">{isLoadingGetWeatherData ? 'Loading':'ok'}</li>
             </ul>
+            <div className="single-post-text">      
+                  {weatherData.map(data => (
+                      <ul> 
+                          <li>Weather: {data.Wx}</li>
+                          <li>Feel like: {data.CI}</li>
+                          <li>Temp: {(Number(data.MinT)+Number(data.MaxT))/2}</li>
+                          <li>Rainy: {data.PoP}</li>
+                      </ul>
+                  ))}
+              </div>
         </nav>
       )
   }
