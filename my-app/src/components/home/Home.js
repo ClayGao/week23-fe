@@ -9,7 +9,6 @@ class Home extends Component {
  
     componentDidMount() {
         this.props.getPostList()
-        this.props.getWeatherAPI()
     }
     
     render(){
@@ -22,13 +21,13 @@ class Home extends Component {
                     </div>
                     <div className="single-post" > 
                         <div className="single-post-text">
+                            
                             {weatherData.map(data => (
-                                <ul>
-                                    <li>{data.Wx}</li>
-                                    <li>{data.CI}</li>
-                                    <li>{data.MinT}</li>
-                                    <li>{data.MaxT}</li>
-                                    <li>{data.PoP}</li>
+                                <ul> 
+                                    <li>Weather: {data.Wx}</li>
+                                    <li>Feel like: {data.CI}</li>
+                                    <li>Temp: {(Number(data.MinT)+Number(data.MaxT))/2}</li>
+                                    <li>Rainy: {data.PoP}</li>
                                 </ul>
                             ))}
                         </div>

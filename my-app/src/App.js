@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import './scss/App.scss';
-import Nav from './components/nav'
+import Nav from './containers/NavContainer'
 import PostList from './containers/PostListContainer'
 import Post from './containers/PostContainer'
 import About from './components/about'

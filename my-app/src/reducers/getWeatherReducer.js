@@ -2,7 +2,8 @@ import * as actionTypes from '../actionsTypes';
 
 const initState = {
     weatherData: [],
-    isLoadingGetWeatherData: false
+    isLoadingGetWeatherData: false,
+    currentTime: {}
 }
 
 export default function getWeatherReducer(state = initState, action) {
@@ -16,7 +17,7 @@ export default function getWeatherReducer(state = initState, action) {
             return {
                 ...state,
                 weatherData: action.data,
-                isLoadingGetWeatherData: false  
+                isLoadingGetWeatherData: false
             }
         default:
             return state

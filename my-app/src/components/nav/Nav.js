@@ -15,21 +15,34 @@ function Tab({ label, to, exact }) {
       />
     );
   }
+class Nav extends Component {
+    constructor(props) {
+        super(props)
+    }
 
-const Nav = ({isMove}) => {
+    componentDidMount() {
+      this.props.getWeatherAPI()
+    }
+
+    render(){
+      const currentTime = new Date()
+      const {isMove, weatherData} = this.props
+      console.log(weatherData)
     return (
-        <nav className={isMove ? "window-is-Moving" : "window-UnMoving"}>
-            <ul>
-                <li>
-                    Blue Orange
-                </li>
-                <Tab exact={true} to="/" label="Home" />
-                <Tab to="/about" label="About" />
-                <Tab to="/list" label="List" />
-                <Tab to="/write" label="Write" />
-            </ul>
-        </nav>
+      <nav className={isMove ? "window-is-Moving" : "window-UnMoving"}>
+          <ul>
+              <li>
+                  Blue Orange
+              </li>
+              <Tab exact={true} to="/" label="Home" />
+              <Tab to="/about" label="About" />
+              <Tab to="/list" label="List" />
+              <Tab to="/write" label="Write" />
+              <li className="date">{currentTime.toDateString()}</li>
+          </ul>
+      </nav>
     )
+  }
 }
 
 

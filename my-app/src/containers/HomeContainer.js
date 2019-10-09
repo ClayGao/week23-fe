@@ -25,25 +25,6 @@ const mapDispatchToProps = dispatch => {
             getPosts().then(resp => {
                 dispatch(actions.getPostsSuccess(resp.data))
             })
-        },
-        getWeatherAPI: () => {
-            dispatch(actions.getWeatherData())
-            getWeather().then(resp => {
-                let Weather = []
-                const weatherJSON = resp.data.cwbopendata.dataset.location[0].weatherElement
-                for(var i = 0; i < 3; i++){
-                     Weather.push(
-                        {
-                            Wx: weatherJSON[0].time[i].parameter.parameterName,
-                            MaxT: weatherJSON[1].time[i].parameter.parameterName,
-                            MinT: weatherJSON[2].time[i].parameter.parameterName,
-                            CI: weatherJSON[3].time[i].parameter.parameterName,
-                            PoP: weatherJSON[4].time[i].parameter.parameterName
-                        }
-                     ) 
-                }
-                dispatch(actions.getWeatherDataSuccess(Weather))
-            })
         }
     }
 }

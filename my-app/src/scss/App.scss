@@ -37,6 +37,10 @@ a {
             background-color: $sub-color;
             box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
         }
+        .date {
+            position: absolute;
+            right: 15px;
+        }
     }
 }
 
@@ -55,6 +59,10 @@ a {
         li.active {
             transition: 0.5s all;
             color: $main-color;
+        }
+        .date {
+            position: absolute;
+            right: 15px;
         }
     }
 }
@@ -176,7 +184,7 @@ ul {
     background-color: rgba(197, 188, 168, 0.1);
     position: relative;
     height: auto;
-    width: 950px;
+    width: 700px;
     border: 3px solid $border-color;
     transition: 0.3s all;
     margin: 20px;
@@ -294,7 +302,7 @@ ul {
     @include font(20px, $font-color, bold, monospace);
     position: relative;
     height: auto;
-    width: 950px;
+    width: 700px;
     border: 3px solid $border-color;
     transition: 0.3s all;
     margin: 20px;
