@@ -26,22 +26,23 @@ class Nav extends Component {
 
     render(){
       const currentTime = new Date()
-      const {isMove, weatherData} = this.props
-      console.log(weatherData)
-    return (
-      <nav className={isMove ? "window-is-Moving" : "window-UnMoving"}>
-          <ul>
-              <li>
-                  Blue Orange
-              </li>
-              <Tab exact={true} to="/" label="Home" />
-              <Tab to="/about" label="About" />
-              <Tab to="/list" label="List" />
-              <Tab to="/write" label="Write" />
-              <li className="date">{currentTime.toDateString()}</li>
-          </ul>
-      </nav>
-    )
+      const {isMove, weatherData, isLoadingGetWeatherData} = this.props
+      console.log(this.props)
+      return (
+        <nav className={isMove ? "window-is-Moving" : "window-UnMoving"}>
+            <ul>
+                <li>
+                    Blue Orange
+                </li>
+                <Tab exact={true} to="/" label="Home" />
+                <Tab to="/about" label="About" />
+                <Tab to="/list" label="List" />
+                <Tab to="/write" label="Write" />
+                <li className="date">{currentTime.toDateString()}</li>
+                <li className="date">{isLoadingGetWeatherData ? 'Loading':'ok'}</li>
+            </ul>
+        </nav>
+      )
   }
 }
 

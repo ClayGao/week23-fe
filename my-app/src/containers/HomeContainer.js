@@ -11,7 +11,6 @@ const HomeContainer = props => {
 
 const mapStateToProps = state => {
     return {
-        //isLoadingGetPosts: state.getPostsReducer.isLoadingGetPosts,
         postListData: state.getPostsReducer.postListData,
         weatherData: state.getWeatherReducer.weatherData,
         isLoadingGetWeatherData: state.getWeatherReducer.isLoadingGetWeatherData
