@@ -7,7 +7,7 @@ const About = () => {
             <div className="page-title">
                 About Blog
             </div>
-             <div className="single-post">
+             <div className="info-page">
                  <ReactMarkdown className="single-post-text" source="
                     ## Markdown 語法
                       目前 Markdown 語法還有一些小 Bug 未解，比如說有些字元 (如<ul>) 不能被 render

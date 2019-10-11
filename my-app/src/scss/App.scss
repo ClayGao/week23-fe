@@ -103,17 +103,15 @@ a {
     transition: 0.3s all;
     margin: 20px;
     .weather-card {
-        height:200px;
+        height:auto;
         width: 300px;
         padding: 30px;
         box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
         background-color: rgba(197, 188, 168, 0.1);
         border: 3px solid $border-color;
         margin: 20px;
-        //display: inline-block;
         h1 {
             @include font(40px, white,bold, monospace);
-            margin-bottom:10px;
         }
         p {
             @include font(16px, white,normal, monospace);
@@ -217,9 +215,9 @@ a {
     }
 }
 
-/* ----- Post.js / About.js ----- */
-.single-post {
-    background-color: rgba(37, 33, 22, 0.7);
+/* -----  About.js ----- */
+.info-page {
+    background-color: rgba(37, 33, 22, 0.1);
     position: relative;
     height: auto;
     width: auto;
@@ -230,6 +228,24 @@ a {
     padding: 60px;
     padding-bottom: 140px;
     box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
+}
+
+/* ----- Post.js / About.js ----- */
+.single-post {
+    background-color: rgba(37, 33, 22, 0.1);
+    position: relative;
+    height: auto;
+    width: auto;
+    min-width: 700px;
+    border: 3px solid $border-color;
+    transition: 0.3s all;
+    margin: 20px;
+    padding: 60px;
+    padding-bottom: 140px;
+    box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
+    &:hover {
+        background-color: rgba(37, 33, 22, 0.8);
+    }
     &-title {
         @include font(40px, wheat, bold, monospace);
         padding: 5px 8px;
@@ -255,17 +271,14 @@ a {
             }
         }
         pre {
-            background-color :rgba(41, 40, 37, 1);
-            transition: 0.2s all;
             font-size:14px;
             line-height: 1.2em;
             overflow: auto;
-            border: 2px solid $border-color;
-            padding: 30px;
-            box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
-            &:hover {
-                border-color: $sub-color;
-            }
+            border: 1px solid $border-color;
+            border-radius: 4px;
+        }
+        blockquote {
+            @include font(18px, wheat, bolder, monospace);
         }
     }
     &-editor {  
@@ -277,7 +290,7 @@ a {
         word-break: break-word;
     }
     &-editblock {  
-        @include font(20px, $font-color, bold, monospace);
+        @include font(14px, $font-color, bold, monospace);
         position: absolute;
         bottom: 45px;
         left: 60px;

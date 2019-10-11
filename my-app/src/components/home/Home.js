@@ -34,7 +34,7 @@ class Home extends Component {
                     <div className="page-title">
                         About  Me
                     </div>
-                    <div className="single-post" >        
+                    <div className="info-page" >        
                         <div className="single-post-text">
                             Hi, I am Clay 
                             <br />

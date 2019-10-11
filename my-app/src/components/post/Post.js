@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import ReactMarkdown from 'react-markdown';
+import CodeBlock from "../../CodeBlock";
 
 class Post extends Component {
     constructor(props) {
@@ -31,6 +32,7 @@ class Post extends Component {
                     </div>
                     <ReactMarkdown 
                         className="single-post-text" 
+                        renderers={{ code: CodeBlock }}
                         source={!isLoadingSinglePost ? singlePostData.body : "Loading..."} 
                     />
                     <div className="single-post-editor">
