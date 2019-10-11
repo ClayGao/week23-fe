@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import axios from 'axios';
+import { sendSinglePost } from '../../WebAPI'
 
 class Write extends Component {
     constructor(props) {
@@ -12,13 +12,12 @@ class Write extends Component {
     }
     
     handlePostArticle = () => {
-        const url = 'https://qootest.com/posts'
         const data = this.state 
         if (!data.title || !data.author || !data.body) {
             alert('Write Something :D') 
             return
         }
-        axios.post(url, data)
+        sendSinglePost(data)
         .then(
             this.setState({
                 title:'',

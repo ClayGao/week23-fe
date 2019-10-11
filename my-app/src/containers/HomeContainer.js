@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-dom";
-import { getPosts, getWeather } from '../WebAPI'
+import { getRecentPosts } from '../WebAPI'
 import Home from '../components/home'
 import * as actions from '../actions'
 import { connect } from 'react-redux'
@@ -21,7 +21,7 @@ const mapDispatchToProps = dispatch => {
     return {             
         getPostList: () => {
             dispatch(actions.getPosts())
-            getPosts().then(resp => {
+            getRecentPosts().then(resp => {
                 dispatch(actions.getPostsSuccess(resp.data))
             })
         }

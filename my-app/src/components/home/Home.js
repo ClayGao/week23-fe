@@ -17,23 +17,22 @@ class Home extends Component {
             <div>
                 <div  className="board">
                     <div className="page-title">
-                        Weather
+                        Today's  Weather
                     </div>
-                    <div className="single-post" > 
-                        <div className="single-post-text">
-                            
+                    <div className="weather" > 
                             {weatherData.map(data => (
-                                <ul> 
-                                    <li>Weather: {data.Wx}</li>
-                                    <li>Feel like: {data.CI}</li>
-                                    <li>Temp: {(Number(data.MinT)+Number(data.MaxT))/2}</li>
-                                    <li>Rainy: {data.PoP}</li>
-                                </ul>
+                                <div class="weather-card"> 
+                                    <h1>{data.time}</h1>
+                                    <p>Weather: {data.Wx}</p>
+                                    <p>Feel: {data.CI}</p>
+                                    <p>Max Temp: {data.MaxT}°C</p>
+                                    <p>Min Temp: {data.MinT}°C</p>
+                                    <p>Rain: {data.PoP}%</p>
+                                </div>
                             ))}
-                        </div>
                     </div>
                     <div className="page-title">
-                        About me
+                        About  Me
                     </div>
                     <div className="single-post" >        
                         <div className="single-post-text">
@@ -58,7 +57,7 @@ class Home extends Component {
                         </div>
                     </div>
                     <div className="page-title">
-                        The Latest Articles
+                        The  Latest  Articles
                     </div>
                     {postListData.map(card => (
                         <div key={card.id} 

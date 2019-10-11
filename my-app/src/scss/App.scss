@@ -9,11 +9,6 @@ body {
     margin: 0px;
 }
 
-* {
-    padding: 0px;
-    margin: 0px;
-}
-
 /*-- 因應 <Link /> 使用 --*/
 a {
     text-decoration: none;
@@ -32,14 +27,30 @@ a {
     display: flex;
     align-items: center;
     ul {
+        list-style:none;
+        li {
+            @include font(18px, $font-color, bold, monospace);
+            text-align: center;
+            outline: none;
+            display: inline-block;
+            padding: 12px;
+            &~li {
+                cursor: pointer;
+                margin-left: 8px;
+            }
+        } 
         li.active {
             transition: 0.5s all;
             background-color: $sub-color;
             box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
         }
-        .date {
+        .date-info {
             position: absolute;
             right: 15px;
+            li {
+                cursor: text;
+                @include font(16px, white, normal, monospace);
+            }
         }
     }
 }
@@ -56,35 +67,62 @@ a {
     display: flex;
     align-items: center;
     ul {
+        list-style:none;
+        li {
+            @include font(18px, $font-color, bold, monospace);
+            text-align: center;
+            outline: none;
+            display: inline-block;
+            padding: 12px;
+            &~li {
+                cursor: pointer;
+                margin-left: 8px;
+            }
+        } 
         li.active {
             transition: 0.5s all;
             color: $main-color;
         }
-        .date {
+        .date-info {
             position: absolute;
             right: 15px;
+            li {
+                cursor: text;
+                @include font(16px, white, normal, monospace);
+            }
         }
     }
 }
 
-
-
-ul {
-    list-style:none;
-    li {
-        @include font(18px, $font-color, bold, monospace);
-        text-align: center;
-        outline: none;
-        display: inline-block;
-        padding: 12px;
-        &~li {
-            cursor: pointer;
-            margin-left: 8px;
+/* ----- Home.js  ----- */
+.weather {
+    display: flex;
+    position: relative;
+    height: auto;
+    width: 800px;
+    transition: 0.3s all;
+    margin: 20px;
+    .weather-card {
+        height:200px;
+        width: 300px;
+        padding: 30px;
+        box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
+        background-color: rgba(197, 188, 168, 0.1);
+        border: 3px solid $border-color;
+        margin: 20px;
+        //display: inline-block;
+        h1 {
+            @include font(40px, white,bold, monospace);
+            margin-bottom:10px;
         }
-    } 
+        p {
+            @include font(16px, white,normal, monospace);
+            margin-bottom: 10px;
+        }
+    }
+
 }
 
-/* ----- Home.js  ----- */
 .page-title {
     @include font(80px, $font-color, null, (Impact, Charcoal, sans-serif));
     position: relative;
@@ -181,10 +219,11 @@ ul {
 
 /* ----- Post.js / About.js ----- */
 .single-post {
-    background-color: rgba(197, 188, 168, 0.1);
+    background-color: rgba(37, 33, 22, 0.7);
     position: relative;
     height: auto;
-    width: 700px;
+    width: auto;
+    min-width: 700px;
     border: 3px solid $border-color;
     transition: 0.3s all;
     margin: 20px;
@@ -199,15 +238,35 @@ ul {
         transition: 0.3s all;
     }
     &-text {
-        @include font(16px, $font-color, null, monospace);
+        @include font(16px, rgb(216, 216, 216), null, monospace);
         margin-top: 50px;
         padding: 5px 8px;
         height: auto;
         word-break: break-word;
-        text-overflow: ellipsis;
-        overflow: hidden;
         line-height: 2em;
-        
+        p {
+            img {
+                max-width: 700px;
+            }
+            a {
+                color: $border-color;
+                padding-bottom: 3px;
+                border-bottom: 1.5px solid $sub-color;
+            }
+        }
+        pre {
+            background-color :rgba(41, 40, 37, 1);
+            transition: 0.2s all;
+            font-size:14px;
+            line-height: 1.2em;
+            overflow: auto;
+            border: 2px solid $border-color;
+            padding: 30px;
+            box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
+            &:hover {
+                border-color: $sub-color;
+            }
+        }
     }
     &-editor {  
         @include font(20px, $font-color, bold, monospace);

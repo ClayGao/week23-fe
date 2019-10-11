@@ -1,8 +1,21 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
+const DateInfo = ({currentWeather, currentTime}) => {
+  return (
+    <span  className="date-info">
+    {currentWeather.map(data=>(
+      <React.Fragment>
+        <li>{currentTime.toDateString()}</li>
+        <li>T: {(Number(data.MinT)+Number(data.MaxT))/2}°C</li>
+        <li>Rain: {data.PoP}%</li>
+      </React.Fragment>
+    ))}
+    </span>
+  )
+}
 
-function Tab({ label, to, exact }) {
+const Tab = ({ label, to, exact }) => {
     return (
       <Route
         path={to}
@@ -27,31 +40,20 @@ class Nav extends Component {
 
     render(){
       const currentTime = new Date()
-      const {isMove, weatherData, isLoadingGetWeatherData} = this.props
-      console.log(this.props)
+      const {isMove, weatherData} = this.props
+      const currentWeather = weatherData.filter(data => (
+        currentTime.getHours() >= 12 && currentTime.getHours() < 18) ? 
+        data.time ===  '今早' :  data.time ===  '今晚'
+      )
       return (
         <nav className={isMove ? "window-is-Moving" : "window-UnMoving"}>
             <ul>
-                <li>
-                    Blue Orange
-                </li>
                 <Tab exact={true} to="/" label="Home" />
                 <Tab to="/about" label="About" />
                 <Tab to="/list" label="List" />
                 <Tab to="/write" label="Write" />
-                <li className="date">{currentTime.toDateString()}</li>
-                <li className="date">{isLoadingGetWeatherData ? 'Loading':'ok'}</li>
+                <DateInfo currentWeather={currentWeather} currentTime={currentTime}/>
             </ul>
-            <div className="single-post-text">      
-                  {weatherData.map(data => (
-                      <ul> 
-                          <li>Weather: {data.Wx}</li>
-                          <li>Feel like: {data.CI}</li>
-                          <li>Temp: {(Number(data.MinT)+Number(data.MaxT))/2}</li>
-                          <li>Rainy: {data.PoP}</li>
-                      </ul>
-                  ))}
-              </div>
         </nav>
       )
   }
