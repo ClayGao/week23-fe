@@ -135,7 +135,7 @@ a {
     box-shadow: 5px 4px 3px rgba(20%,20%,40%,0.5);
 }
 
-/* ----- PostList.js  ----- */
+/* ----- PostList.js / Home.js  ----- */
 
 .loading {
     @include font(20px, $font-color, null, (monospace));
@@ -169,8 +169,7 @@ a {
         .post {
             cursor: pointer;
             position: relative;
-            height: 200px;
-            width: 200px;
+            width: 750px;
             border: 3px solid $border-color;
             transition: 0.25s all;
             margin: 20px;
@@ -181,9 +180,9 @@ a {
                 background-color: rgba(235, 165, 0, 0.2);
             }
             &-title {
-                @include font(23px, $font-color, bold, monospace);
+                @include font(20px, $font-color, bold, monospace);
                 padding: 5px 8px;
-                height: 50px;
+                height: 30px;
                 word-break: break-word;
                 text-overflow: ellipsis;
                 overflow: hidden;
@@ -194,21 +193,20 @@ a {
                 @include font(13px, $font-color, null, monospace);
                 line-height: 1.4em;
                 padding: 5px 8px;
+                margin-bottom: 40px;
                 height: 91px;
-                word-break: break-word;
-                text-overflow: ellipsis;
                 overflow: hidden;
+                text-overflow: ellipsis;
                 &:hover {
                     color: $font-color;
                 }
             }
             &-editor {  
                 @include font(13px, $font-color, bold, monospace);
-                position: absolute;
                 bottom: 25px;
                 right: 25px;
                 padding: 5px 8px;
-                width: 110px;
+                width: 180px;
                 word-break: break-word;
                 white-space: nowrap;
                 text-overflow: ellipsis;

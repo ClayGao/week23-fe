@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { sendSinglePost } from '../../WebAPI'
+import  debounce  from 'lodash/debounce';
 
 class Write extends Component {
     constructor(props) {
@@ -14,7 +15,7 @@ class Write extends Component {
     handlePostArticle = () => {
         const data = this.state 
         if (!data.title || !data.author || !data.body) {
-            alert('Write Something :D') 
+            alert('Write Something :(') 
             return
         }
         sendSinglePost(data)
@@ -23,17 +24,21 @@ class Write extends Component {
                 title:'',
                 author:'',
                 body:''
-            })
+            },
+            alert('Push Success! :D'),
+            window.history.back() 
+            )   
         ).catch(error =>{
             alert('Failed to post, connect admin please :)')
         })
     }
-    
-    
+
+
     handleInput = (e) => {
+        e.persist();
         const inputType = e.target.className
             if(inputType === "write-article-title") {
-                this.setState({title: e.target.value,})
+                this.setState({title: e.target.value})
             } else if (inputType === "write-article-editor") {
                 this.setState({author: e.target.value})
             } else {
@@ -42,6 +47,7 @@ class Write extends Component {
     }
     
     render(){
+        console.log('s')
         const {title, author, body} = this.state
         return (
             <div  className="board">
@@ -58,6 +64,5 @@ class Write extends Component {
         )
     }
  }
-
 
 export default Write

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
-import { BrowserRouter as Router, Route, Link, withRouter } from "react-router-dom";
-import axios from 'axios';
+import ReactMarkdown from 'react-markdown';
 
 class Home extends Component {
     constructor(props) {
@@ -31,6 +30,28 @@ class Home extends Component {
                                 </div>
                             ))}
                     </div>
+                    
+                    <div className="page-title">
+                        The  Latest  Articles
+                    </div>
+                    {postListData.map(card => (
+                        <div key={card.id} 
+                            className="post" 
+                            onClick={() => { 
+                                history.push('/list/id=' + card.id)
+                            }}>
+                            <div className="post-title">
+                                {card.title}
+                            </div>
+                            <ReactMarkdown 
+                                className="post-text" 
+                                source={card.body} 
+                            />
+                            <div className="post-editor">
+                                Author: {card.author ? card.author : "Noname"}
+                            </div>
+                        </div>
+                    ))}
                     <div className="page-title">
                         About  Me
                     </div>
@@ -56,26 +77,6 @@ class Home extends Component {
                             Author: ClayGao
                         </div>
                     </div>
-                    <div className="page-title">
-                        The  Latest  Articles
-                    </div>
-                    {postListData.map(card => (
-                        <div key={card.id} 
-                            className="post" 
-                            onClick={() => { 
-                                history.push('/list/id=' + card.id)
-                            }}>
-                            <div className="post-title">
-                                {card.title}
-                            </div>
-                            <div className="post-text" >
-                            {card.body}
-                            </div>
-                            <div className="post-editor">
-                                Author: {card.author ? card.author : "Noname"}
-                            </div>
-                        </div>
-                    ))}
                 </div>
             </div>
         )

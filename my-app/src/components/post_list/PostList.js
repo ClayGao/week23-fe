@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import ReactMarkdown from 'react-markdown';
 
 class PostList extends Component {
     constructor(props) {
@@ -29,9 +30,10 @@ class PostList extends Component {
                     <div className="post-title">
                         {card.title}
                     </div>
-                    <div className="post-text">
-                        {card.body}
-                    </div>
+                    <ReactMarkdown 
+                        className="post-text" 
+                        source={card.body} 
+                    />
                     <div className="post-editor">
                         Author: {card.author ? card.author : "Noname"}
                     </div>

@@ -14,8 +14,13 @@ class Post extends Component {
     
     render(){
         const postId = this.props.match.params.listId
-        const { singlePostData, isLoadingSinglePost, deleteActiveSinglePost, editActiveSinglePost, completeEditActiveSinglePost, isEditing,title,body,isDeleted } = this.props
-        console.log(isDeleted)
+        const { singlePostData, 
+                isLoadingSinglePost, 
+                deleteActiveSinglePost, 
+                editActiveSinglePost, 
+                completeEditActiveSinglePost, 
+                isEditing,title,
+                body } = this.props
         return (
             <div  className="board">
                 <div key={singlePostData.id} 
@@ -36,7 +41,7 @@ class Post extends Component {
                         source={!isLoadingSinglePost ? singlePostData.body : "Loading..."} 
                     />
                     <div className="single-post-editor">
-                        {"Author: " + (singlePostData.author ? singlePostData.author : "Noname")}
+                        {"Author: " + (singlePostData.author || "Noname")}
                     </div>
                     <div className="single-post-editblock">
                         <span className="single-post-editblock-edit" 
