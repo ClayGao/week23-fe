@@ -17,7 +17,7 @@ class App extends Component {
 
   render() {
       return (
-        <Router basename="/week23/my-app/build">
+        <Router basename="/week23-fe/my-app/build">
           <div className="App">
               <Nav />
               <div className="wrapper"> 
