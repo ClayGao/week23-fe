@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import shallowEqual from 'shallowequal'
 
 const DateInfo = ({currentWeather, currentTime}) => {
   return (
@@ -32,15 +33,44 @@ const Tab = ({ label, to, exact }) => {
 class Nav extends Component {
     constructor(props) {
         super(props)
+        this.state = {
+          isMove:false
+        }
+    }
+
+    scroll = () => {
+      if(window.scrollY) {
+        this.setState({
+          isMove : true
+        })
+      } else {
+        this.setState({
+          isMove : false
+        })
+      }
+    }
+  
+    
+    shouldComponentUpdate(nextProps, nextState){
+      return !shallowEqual(this.state.isMove, nextState.isMove)
+    }
+    
+    
+  
+    componentWillUnmount(){
+      window.removeEventListener("scroll", this.scroll);
     }
 
     componentDidMount() {
+      window.addEventListener("scroll", this.scroll);
       this.props.getWeatherAPI()
     }
 
     render(){
       const currentTime = new Date()
-      const {isMove, weatherData} = this.props
+      const {isMove} = this.state
+      console.log(isMove)
+      const {weatherData} = this.props
       const currentWeather = weatherData.filter(data => (
         currentTime.getHours() >= 12 && currentTime.getHours() < 18) ? 
         data.time ===  '今早' :  data.time ===  '今晚'

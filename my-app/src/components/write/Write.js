@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
-import { sendSinglePost } from '../../WebAPI'
-import  debounce  from 'lodash/debounce';
+import { getPosts, sendSinglePost } from '../../WebAPI'
+import { DebounceInput } from 'react-debounce-input';
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class Write extends Component {
     constructor(props) {
@@ -11,7 +12,8 @@ class Write extends Component {
             body:''
         }
     }
-    
+ 
+
     handlePostArticle = () => {
         const data = this.state 
         if (!data.title || !data.author || !data.body) {
@@ -25,17 +27,16 @@ class Write extends Component {
                 author:'',
                 body:''
             },
-            alert('Push Success! :D'),
-            window.history.back() 
+            getPosts(data),
+            alert('Push Success! :D') // 這邊應該直接使用 react-router 的導向，這是偷懶的寫法
             )   
         ).catch(error =>{
             alert('Failed to post, connect admin please :)')
         })
     }
-
+    
 
     handleInput = (e) => {
-        e.persist();
         const inputType = e.target.className
             if(inputType === "write-article-title") {
                 this.setState({title: e.target.value})
@@ -47,22 +48,21 @@ class Write extends Component {
     }
     
     render(){
-        console.log('s')
         const {title, author, body} = this.state
         return (
             <div  className="board">
                 <div className="page-title">
                     Write Something :D
                 </div>
-                <form className="write-article"  onChange={this.handleInput} >
-                    Title: <input type="text" className="write-article-title" value={title} />
-                    Your name: <input type="text" className="write-article-editor" value={author} />
-                    Content:　<textarea className="write-article-text" value={body}></textarea>
-                    <input className="write-article-button" type="button" onClick={this.handlePostArticle} value="Send" />
+                <form className="write-article">
+                    Title: <DebounceInput element="input" debounceTimeout={1000} onChange={this.handleInput} placeholder="Enter your title..." type="text" className="write-article-title" value={title} />
+                    Your name: <DebounceInput element="input" debounceTimeout={1000} onChange={this.handleInput} placeholder="Enter your name..." type="text" className="write-article-editor" value={author} />
+                    Content:　<DebounceInput element="textarea" debounceTimeout={800} onChange={this.handleInput} placeholder="Enter something..." className="write-article-text" value={body} />
+                    <Link to="/list" className="write-article-button" type="button" onClick={this.handlePostArticle}>Send</Link>
                 </form>
             </div>
         )
     }
- }
+}
 
 export default Write

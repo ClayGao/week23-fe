@@ -9,7 +9,6 @@ class PostList extends Component {
     componentDidMount() {
         this.props.getPostList()
     }
-    
     render(){
         const {history, isLoadingGetPosts, postListData} = this.props
         return (

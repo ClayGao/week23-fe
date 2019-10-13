@@ -1,5 +1,4 @@
 import React, {Component,} from 'react';
-import shallowEqual from 'shallowequal'
 import './scss/App.scss';
 import Nav from './containers/NavContainer'
 import PostList from './containers/PostListContainer'
@@ -12,43 +11,15 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 class App extends Component {
   constructor(props) {
       super(props)
-      this.state = {
-          scrollY:false
-      }
   }
 
-  scroll = () => {
-    if(window.scrollY) {
-      this.setState({
-        scrollY : true
-      })
-    } else {
-      this.setState({
-        scrollY : false
-      })
-    }
-  }
-
-  componentDidMount() {
-    window.addEventListener("scroll", this.scroll);
-  }
-
-  componentWillUnmount(){
-    window.removeEventListener("scroll", this.scroll);
-  }
   
-  /*
-  shouldComponentUpdate(nextProps, nextState){
-      return !shallowEqual(this.state.scrollY, nextState.scrollY)
-  }
-  */
 
   render() {
-      const {scrollY} = this.state
       return (
         <Router basename="/week23/my-app/build">
           <div className="App">
-              <Nav isMove={scrollY}/>
+              <Nav />
               <div className="wrapper"> 
               <Switch> 
                   <Route path="/" exact component={Home} />

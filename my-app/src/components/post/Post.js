@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ReactMarkdown from 'react-markdown';
 import CodeBlock from "../../CodeBlock";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
 
 class Post extends Component {
     constructor(props) {
@@ -48,11 +49,11 @@ class Post extends Component {
                             onClick={() => { 
                                 editActiveSinglePost(singlePostData.title, singlePostData.body) 
                                 }}>Edit</span>
-                        <span className="single-post-editblock-delete" 
+                        <Link to="/list"
+                            className="single-post-editblock-delete" 
                             onClick={() => { 
                                 deleteActiveSinglePost(postId)
-                                window.history.back()
-                                }}>Delete</span>
+                                }}>Delete</Link>
                     </div>
                     </>
                     :
