@@ -31,8 +31,9 @@ const mapDispatchToProps = dispatch => {
             dispatch(actions.deleteSinglePost())
             deleteSinglePost(postId)
             getPosts().then(resp => {
-                alert('Delete Success!') 
                 dispatch(actions.deleteSinglePostSuccess())
+                window.history.back()
+                alert('Delete Success!') 
             })     
         },
         editActiveSinglePost: (title, body) => {

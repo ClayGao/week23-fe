@@ -6,7 +6,7 @@ const weatherDataId = 'F-C0032-001'
 
 export const getPosts = () => axios.get(url + '?_sort=id&_order=desc')
 
-export const getRecentPosts = () => axios.get(url + '?_sort=id&_order=desc&_limit=6')
+export const getRecentPosts = () => axios.get(url + '?_sort=id&_order=desc&_limit=3')
 
 export const sendSinglePost = (data) => axios.post(url, data)
 

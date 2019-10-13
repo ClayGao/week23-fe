@@ -9,6 +9,7 @@ class PostList extends Component {
     componentDidMount() {
         this.props.getPostList()
     }
+    
     render(){
         const {history, isLoadingGetPosts, postListData} = this.props
         return (
@@ -24,7 +25,7 @@ class PostList extends Component {
                 <div key={card.id} 
                     className="post" 
                     onClick={() => { 
-                        history.push('/list/id=' + card.id)
+                        history.push('/list/' + card.id)
                     }}>
                     <div className="post-title">
                         {card.title}

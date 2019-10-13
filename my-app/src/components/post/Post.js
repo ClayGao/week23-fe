@@ -21,7 +21,8 @@ class Post extends Component {
                 editActiveSinglePost, 
                 completeEditActiveSinglePost, 
                 isEditing,title,
-                body } = this.props
+                body,
+                history } = this.props
         return (
             <div  className="board">
                 <div key={singlePostData.id} 
@@ -49,11 +50,11 @@ class Post extends Component {
                             onClick={() => { 
                                 editActiveSinglePost(singlePostData.title, singlePostData.body) 
                                 }}>Edit</span>
-                        <Link to="/list"
+                        <span to="/list"
                             className="single-post-editblock-delete" 
                             onClick={() => { 
                                 deleteActiveSinglePost(postId)
-                                }}>Delete</Link>
+                                }}>Delete</span>
                     </div>
                     </>
                     :

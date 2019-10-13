@@ -38,7 +38,7 @@ class Home extends Component {
                         <div key={card.id} 
                             className="post" 
                             onClick={() => { 
-                                history.push('/list/id=' + card.id)
+                                history.push('/list/' + card.id)
                             }}>
                             <div className="post-title">
                                 {card.title}

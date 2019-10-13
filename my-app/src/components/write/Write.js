@@ -15,6 +15,7 @@ class Write extends Component {
  
 
     handlePostArticle = () => {
+        const { history } = this.props
         const data = this.state 
         if (!data.title || !data.author || !data.body) {
             alert('Write Something :(') 
@@ -27,9 +28,10 @@ class Write extends Component {
                 author:'',
                 body:''
             },
-            getPosts(data),
-            alert('Push Success! :D') // 這邊應該直接使用 react-router 的導向，這是偷懶的寫法
-            )   
+            history.push('/list'),
+            getPosts().then(
+                alert('Push Success! :D') // 這邊應該直接使用 react-router 的導向，這是偷懶的寫法
+            ))   
         ).catch(error =>{
             alert('Failed to post, connect admin please :)')
         })
@@ -49,6 +51,7 @@ class Write extends Component {
     
     render(){
         const {title, author, body} = this.state
+        const {history} = this.props
         return (
             <div  className="board">
                 <div className="page-title">
@@ -58,7 +61,7 @@ class Write extends Component {
                     Title: <DebounceInput element="input" debounceTimeout={1000} onChange={this.handleInput} placeholder="Enter your title..." type="text" className="write-article-title" value={title} />
                     Your name: <DebounceInput element="input" debounceTimeout={1000} onChange={this.handleInput} placeholder="Enter your name..." type="text" className="write-article-editor" value={author} />
                     Content:　<DebounceInput element="textarea" debounceTimeout={800} onChange={this.handleInput} placeholder="Enter something..." className="write-article-text" value={body} />
-                    <Link to="/list" className="write-article-button" type="button" onClick={this.handlePostArticle}>Send</Link>
+                    <input className="write-article-button" type="button" onClick={this.handlePostArticle} value="Send" />
                 </form>
             </div>
         )
