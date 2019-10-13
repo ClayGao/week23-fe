@@ -16,7 +16,7 @@ class Home extends Component {
             <div>
                 <div  className="board">
                     <div className="page-title">
-                        Today's  Weather
+                        Today  Weather
                     </div>
                     <div className="weather" > 
                             {weatherData.map(data => (

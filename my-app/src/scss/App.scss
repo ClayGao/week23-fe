@@ -30,7 +30,7 @@ a {
         padding: 0;
         list-style:none;
         li {
-            @include font(16px, $font-color, normal, monospace);
+            @include font(16px, $font-color, bolder, monospace);
             text-align: center;
             outline: none;
             display: inline-block;
@@ -71,7 +71,7 @@ a {
         list-style:none;
         padding: 0;
         li {
-            @include font(16px, $font-color, normal, monospace);
+            @include font(16px, $font-color, bolder, monospace);
             text-align: center;
             outline: none;
             display: inline-block;
